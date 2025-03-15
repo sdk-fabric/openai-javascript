@@ -3,8 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
+import {CompletionMessageDeveloper} from "./CompletionMessageDeveloper";
+import {CompletionMessageSystem} from "./CompletionMessageSystem";
+import {CompletionMessageUser} from "./CompletionMessageUser";
+import {CompletionMessageAssistant} from "./CompletionMessageAssistant";
+import {CompletionMessageTool} from "./CompletionMessageTool";
+
 export interface CompletionMessage {
     role?: string
-    content?: string
+    content?: Array<string>
 }
 
