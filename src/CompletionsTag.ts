@@ -10,12 +10,15 @@ import {CompletionCollection} from "./CompletionCollection";
 import {CompletionDeleted} from "./CompletionDeleted";
 import {CompletionRequest} from "./CompletionRequest";
 import {CompletionResponse} from "./CompletionResponse";
+import {Error} from "./Error";
+import {ErrorException} from "./ErrorException";
 
 export class CompletionsTag extends TagAbstract {
     /**
      * Creates a model response for the given chat conversation.
      *
      * @returns {Promise<CompletionResponse>}
+     * @throws {ErrorException}
      * @throws {ClientException}
      */
     public async create(payload: CompletionRequest): Promise<CompletionResponse> {
@@ -40,12 +43,17 @@ export class CompletionsTag extends TagAbstract {
         }
 
         const statusCode = response.status;
+        if (statusCode >= 0 && statusCode <= 999) {
+            throw new ErrorException(await response.json() as Error);
+        }
+
         throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
     }
     /**
      * List stored Chat Completions. Only Chat Completions that have been stored with the store parameter set to true will be returned.
      *
      * @returns {Promise<CompletionCollection>}
+     * @throws {ErrorException}
      * @throws {ClientException}
      */
     public async getAll(after?: string, limit?: number, model?: string, order?: string): Promise<CompletionCollection> {
@@ -72,12 +80,17 @@ export class CompletionsTag extends TagAbstract {
         }
 
         const statusCode = response.status;
+        if (statusCode >= 0 && statusCode <= 999) {
+            throw new ErrorException(await response.json() as Error);
+        }
+
         throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
     }
     /**
      * Delete a stored chat completion. Only Chat Completions that have been created with the store parameter set to true can be deleted.
      *
      * @returns {Promise<CompletionDeleted>}
+     * @throws {ErrorException}
      * @throws {ClientException}
      */
     public async delete(completionId: string): Promise<CompletionDeleted> {
@@ -101,6 +114,10 @@ export class CompletionsTag extends TagAbstract {
         }
 
         const statusCode = response.status;
+        if (statusCode >= 0 && statusCode <= 999) {
+            throw new ErrorException(await response.json() as Error);
+        }
+
         throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
     }
 
