@@ -50,6 +50,40 @@ export class CompletionsTag extends TagAbstract {
         throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
     }
     /**
+     * Delete a stored chat completion. Only Chat Completions that have been created with the store parameter set to true can be deleted.
+     *
+     * @returns {Promise<CompletionDeleted>}
+     * @throws {ErrorException}
+     * @throws {ClientException}
+     */
+    public async delete(completionId: string): Promise<CompletionDeleted> {
+        const url = this.parser.url('/v1/chat/completions/:completion_id', {
+            'completion_id': completionId,
+        });
+
+        let request: HttpRequest = {
+            url: url,
+            method: 'DELETE',
+            headers: {
+            },
+            params: this.parser.query({
+            }, [
+            ]),
+        };
+
+        const response = await this.httpClient.request(request);
+        if (response.ok) {
+            return await response.json() as CompletionDeleted;
+        }
+
+        const statusCode = response.status;
+        if (statusCode >= 0 && statusCode <= 999) {
+            throw new ErrorException(await response.json() as Error);
+        }
+
+        throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
+    }
+    /**
      * List stored Chat Completions. Only Chat Completions that have been stored with the store parameter set to true will be returned.
      *
      * @returns {Promise<CompletionCollection>}
@@ -77,40 +111,6 @@ export class CompletionsTag extends TagAbstract {
         const response = await this.httpClient.request(request);
         if (response.ok) {
             return await response.json() as CompletionCollection;
-        }
-
-        const statusCode = response.status;
-        if (statusCode >= 0 && statusCode <= 999) {
-            throw new ErrorException(await response.json() as Error);
-        }
-
-        throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
-    }
-    /**
-     * Delete a stored chat completion. Only Chat Completions that have been created with the store parameter set to true can be deleted.
-     *
-     * @returns {Promise<CompletionDeleted>}
-     * @throws {ErrorException}
-     * @throws {ClientException}
-     */
-    public async delete(completionId: string): Promise<CompletionDeleted> {
-        const url = this.parser.url('/v1/chat/completions/:completion_id', {
-            'completion_id': completionId,
-        });
-
-        let request: HttpRequest = {
-            url: url,
-            method: 'DELETE',
-            headers: {
-            },
-            params: this.parser.query({
-            }, [
-            ]),
-        };
-
-        const response = await this.httpClient.request(request);
-        if (response.ok) {
-            return await response.json() as CompletionDeleted;
         }
 
         const statusCode = response.status;

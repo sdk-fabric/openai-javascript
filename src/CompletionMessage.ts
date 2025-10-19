@@ -11,6 +11,6 @@ import {CompletionMessageTool} from "./CompletionMessageTool";
 
 export interface CompletionMessage {
     role?: string
-    content?: Array<string>
+    content?: string
 }
 

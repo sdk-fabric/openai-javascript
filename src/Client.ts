@@ -9,6 +9,7 @@ import {Anonymous} from "sdkgen-client"
 import {ClientException, UnknownStatusCodeException} from "sdkgen-client";
 
 import {CompletionsTag} from "./CompletionsTag";
+import {ResponsesTag} from "./ResponsesTag";
 
 export class Client extends ClientAbstract {
     public completions(): CompletionsTag
@@ -19,15 +20,23 @@ export class Client extends ClientAbstract {
         );
     }
 
+    public responses(): ResponsesTag
+    {
+        return new ResponsesTag(
+            this.httpClient,
+            this.parser
+        );
+    }
+
 
 
     public static build(token: string): Client
     {
-        return new Client('https://api.openai.com/', new HttpBearer(token));
+        return new Client('https://api.openai.com', new HttpBearer(token));
     }
 
     public static buildAnonymous(): Client
     {
-        return new Client('https://api.openai.com/', new Anonymous());
+        return new Client('https://api.openai.com', new Anonymous());
     }
 }
