@@ -3,8 +3,10 @@
  * {@link https://sdkgen.app}
  */
 
+import {ResponseRequestTextFormat} from "./ResponseRequestTextFormat";
+
 export interface ResponseRequestText {
-    format?: string
+    format?: ResponseRequestTextFormat
     verbosity?: string
 }
 
