@@ -3,7 +3,9 @@
  * {@link https://sdkgen.app}
  */
 
-export interface ResponseResponseOutputFunctionCall {
+import {ResponseResponseOutput} from "./ResponseResponseOutput";
+
+export interface ResponseResponseOutputFunctionCall extends ResponseResponseOutput {
     arguments?: string
     call_id?: string
     name?: string

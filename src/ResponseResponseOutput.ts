@@ -3,6 +3,7 @@
  * {@link https://sdkgen.app}
  */
 
+import {ResponseResponseOutputFunctionCall} from "./ResponseResponseOutputFunctionCall";
 import {ResponseResponseOutputMessage} from "./ResponseResponseOutputMessage";
 
 export interface ResponseResponseOutput {

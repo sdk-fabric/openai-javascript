@@ -3,17 +3,17 @@
  * {@link https://sdkgen.app}
  */
 
-import {ResponseRequestConversation} from "./ResponseRequestConversation";
+import {ResponseRequestInput} from "./ResponseRequestInput";
 import {ResponsePrompt} from "./ResponsePrompt";
 import {ResponseReasoning} from "./ResponseReasoning";
-import {ResponseText} from "./ResponseText";
-import {ResponseTool} from "./ResponseTool";
+import {ResponseRequestText} from "./ResponseRequestText";
+import {ResponseRequestTool} from "./ResponseRequestTool";
 
 export interface ResponseRequest {
     background?: boolean
-    conversation?: ResponseRequestConversation
+    conversation?: string
     include?: Array<string>
-    input?: string
+    input?: Array<ResponseRequestInput>
     instructions?: string
     max_output_tokens?: string
     max_tool_calls?: string
@@ -28,9 +28,9 @@ export interface ResponseRequest {
     service_tier?: string
     store?: boolean
     temperature?: number
-    text?: ResponseText
+    text?: ResponseRequestText
     tool_choice?: string
-    tools?: Array<ResponseTool>
+    tools?: Array<ResponseRequestTool>
     top_logprobs?: number
     top_p?: number
     truncation?: string
