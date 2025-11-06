@@ -13,5 +13,6 @@ export interface ResponseResponse {
     incomplete_details?: string
     object?: string
     output?: Array<ResponseResponseOutput>
+    previous_response_id?: string
 }
 
