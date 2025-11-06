@@ -12,8 +12,8 @@ import {ResponseMCPTool} from "./ResponseMCPTool";
 export interface ResponseRequestInputMcpListTools extends ResponseRequestInput {
     id?: string
     server_label?: string
-    tools?: string
-    type?: Array<ResponseMCPTool>
+    tools?: Array<ResponseMCPTool>
     error?: string
+    type?: string
 }
 
