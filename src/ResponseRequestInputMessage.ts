@@ -6,7 +6,7 @@
 import {ResponseRequestInput} from "./ResponseRequestInput";
 
 export interface ResponseRequestInputMessage extends ResponseRequestInput {
-    content?: Array<string>
+    content?: string
     role?: string
     type?: string
 }
