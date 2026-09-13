@@ -13,14 +13,14 @@ https://app.typehub.cloud/d/sdkfabric/openai
 const client = Client::build('[access_token]');
 
 // Creates a model response for the given chat conversation.
-const response = await client.completions().create(new CompletionRequest());
+const response = await client.completions().create(new Completion_Request());
 
 // Delete a stored chat completion.
 const response = await client.completions().delete("completion_id");
 
 // List stored Chat Completions.
-const response = await client.completions().getall("after", 1, "model", "order");
+const response = await client.completions().getAll("after", 1, "model", "order");
 
 // Creates a model response.
-const response = await client.responses().create(new ResponseRequest());
+const response = await client.responses().create(new Response_Request());
 ```
