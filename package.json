@@ -1,7 +1,7 @@
 {
   "name": "@sdkfabric/openai",
   "version": "0.0.0",
-  "description": "Openai JavaScript SDK managed by SDK Fabric",
+  "description": "OpenAI JavaScript SDK managed by SDK Fabric",
   "license": "MIT",
   "homepage": "https://sdk-fabric.org",
   "repository": {
